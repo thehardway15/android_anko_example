@@ -4,8 +4,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.view.ViewGroup
 import org.jetbrains.anko.*
-import org.jetbrains.anko.constraint.layout.constraintLayout
-import android.support.constraint.ConstraintSet.PARENT_ID
+import android.view.Gravity
 import android.widget.TextView
 
 class SecondActivityUI: AnkoComponent<SecondActivity> {
@@ -14,7 +13,7 @@ class SecondActivityUI: AnkoComponent<SecondActivity> {
     lateinit var textRandom: TextView
 
     override fun createView(ui: AnkoContext<SecondActivity>) = with(ui) {
-        constraintLayout {
+        frameLayout {
             backgroundResource = R.color.screenBackground2
             layoutParams = ViewGroup.LayoutParams(matchParent, matchParent)
 
@@ -23,12 +22,10 @@ class SecondActivityUI: AnkoComponent<SecondActivity> {
                 textColor = R.color.colorPrimaryDark
                 textSize = 24f
             }.lparams(width = matchParent, height = wrapContent) {
-                startToStart = PARENT_ID
-                endToEnd = PARENT_ID
-                topToTop = PARENT_ID
                 topMargin = dip(24)
                 leftMargin = dip(24)
                 rightMargin = dip(24)
+                gravity = Gravity.TOP
             }
             textRandom = textView("0") {
                 id = Ids.textview_random
@@ -36,11 +33,7 @@ class SecondActivityUI: AnkoComponent<SecondActivity> {
                 textSize = 72f
                 typeface = Typeface.DEFAULT_BOLD
             }.lparams(width = wrapContent, height = wrapContent) {
-                verticalBias = 0.45f
-                topToBottom = Ids.textViewLabel
-                startToStart = PARENT_ID
-                endToEnd = PARENT_ID
-                bottomToBottom = PARENT_ID
+                gravity = Gravity.CENTER
             }
 
         }
